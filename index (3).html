@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dr inż. Marlena Gąsior-Głogowska — Coaching i Mentoring | NeuroMentor Academy</title>
+  <meta name="description" content="Coaching 1:1, mentoring grupowy i Certyfikat NMA (120h) dla adeptów i psychologów. ADHD/ASD — praktyka na jutro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14; --bg2:#0a0e13; --ink:#e6edf3; --muted:#8aa0b2; --brand:#0ea5e9; --card:#0f1721;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--ink)}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    a{color:var(--ink);text-decoration:none}
+    .btn{display:inline-block;background:var(--brand);color:#001018;padding:12px 18px;border-radius:12px;font-weight:800;box-shadow:0 8px 24px rgba(14,165,233,.25);transition:.2s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.18)}
+    header{position:sticky;top:0;z-index:10;background:rgba(11,15,20,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+    nav{display:flex;gap:16px;align-items:center}
+    .nav-wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+    .logo{font-weight:800;letter-spacing:.3px}
+    .hero{padding:72px 0;background:radial-gradient(800px 400px at 20% -10%, rgba(14,165,233,.2), transparent)}
+    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+    h1{font-size:48px;line-height:1.1;margin:.2em 0}
+    .lead{color:var(--muted);max-width:60ch}
+    .cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+    .badges{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    .badges span{background:rgba(255,255,255,.06);padding:6px 10px;border-radius:999px;color:#cbe2f3;font-size:12px;border:1px solid rgba(255,255,255,.08)}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);padding:18px;border-radius:16px}
+    .section{padding:72px 0}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .price{font-weight:800;margin-top:8px;color:var(--brand)}
+    .two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+    details{background:var(--card);border:1px solid rgba(255,255,255,.08);padding:12px 14px;border-radius:12px;margin:10px 0}
+    details summary{cursor:pointer;font-weight:600}
+    footer{padding:28px 0;border-top:1px solid rgba(255,255,255,.08);color:#b3c3d4}
+    .floating{position:fixed;right:20px;bottom:20px;background:#fff;color:#001018;padding:12px 16px;border-radius:999px;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+    @media (max-width: 900px){ .hero-inner{grid-template-columns:1fr} .grid{grid-template-columns:1fr 1fr} .two-col{grid-template-columns:1fr} }
+    @media (max-width: 600px){ .grid{grid-template-columns:1fr} }
+  
+/* --- FOTO W HERO --- */
+.hero-photo{ display:flex; justify-content:center; align-items:center; }
+.hero-photo img{
+  width:100%; max-width:420px; border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  object-fit:cover; aspect-ratio:4/5; object-position:center top;
+}
+/* Ustaw obrazek po LEWEJ stronie ekranu (duże ekrany) */
+@media (min-width: 901px){
+  .hero-inner{ grid-template-columns: 1fr 1fr; }
+  .hero-inner .media{ order:-1; }
+}
+@media (max-width: 900px){
+  .hero-photo img{ max-width:320px; }
+}
+
+/* --- footer legal mini --- */
+.footer-wrap{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.legal-main{color:#c9d6e2}
+.legal-mini{font-size:12px;opacity:.8;color:#9fb0bf;margin-top:6px}
+.footer-nav{opacity:.8;display:flex;gap:12px;white-space:nowrap}
+@media (max-width: 700px){
+  .footer-wrap{flex-direction:column;align-items:flex-start}
+  .footer-nav{margin-top:8px}
+}
+</style>
+
+</head>
+<body>
+<header>
+  <div class="container nav-wrap">
+    <div class="logo">NeuroMentor Academy</div>
+    <nav>
+      <a href="#oferta">Oferta</a>
+      <a href="#o-mnie">O mnie</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-ghost" href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <h1>dr inż. Marlena<br/>Gąsior-Głogowska</h1>
+      <p class="lead">Coaching i mentoring dla adeptów oraz psychologów wchodzących w neuroróżnorodność (ADHD/ASD). Proste adaptacje, mierzalne efekty, etyka pracy edukacyjnej.</p>
+      <div class="cta">
+        <a class="btn" href="#kontakt">Umów rozmowę</a>
+        <a class="btn btn-ghost" href="#oferta">Zobacz ofertę</a>
+      </div>
+      <div class="badges">
+        <span>edukacja ≠ terapia</span><span>arkusz 3-3-1</span><span>AI & VR (opcjonalnie)</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Co zyskasz w 30 dni</h3>
+      <ul>
+        <li>5–7 adaptacji wdrożonych w klasie/gabinecie</li>
+        <li>gotowe skrypty dla rodzica/nauczyciela</li>
+        <li>plan obserwacji 3-3-1 (10 min/tydz.)</li>
+      </ul>
+      <p style="color:#8aa0b2;font-size:12px;">Materiał ma charakter edukacyjny. Nie prowadzimy diagnozy ani terapii.</p>
+    </div>
+  </div>
+</section>
+
+<section id="oferta" class="section">
+  <div class="container">
+    <h2>Oferta</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Coaching 1:1</h3>
+        <p>Pakiet 5×50 min. Kontrakt celów, notatka superwizyjna, wdrożenia tydzień-po-tygodniu.</p>
+        <div class="price">od 1450 zł</div>
+        <p><a class="btn" href="mailto:kontakt@nma.example?subject=Coaching%201:1%20—%20dr%20in%C5%BC.%20Marlena&body=Imi%C4%99%3A%0ARola%3A%0ACel%3A%20">Zapytaj o termin</a></p>
+      </article>
+      <article class="card">
+        <h3>Mentoring grupowy</h3>
+        <p>8 tygodni, 6 spotkań (8–12 osób). Case’y i praktyczne adaptacje. Dostęp do materiałów.</p>
+        <div class="price">1190–1490 zł</div>
+        <p><a class="btn" href="mailto:kontakt@nma.example?subject=Mentoring%20grupowy%20—%20dr%20in%C5%BC.%20Marlena&body=Imi%C4%99%3A%0ARola%3A%0AOczekiwania%3A%20">Zapisz się</a></p>
+      </article>
+      <article class="card">
+        <h3>Certyfikat NMA (120h)</h3>
+        <p>12 tygodni: 8 modułów + 6 superwizji + 2 case’y. Charakter edukacyjny, certyfikat ukończenia NMA.</p>
+        <div class="price">3490 zł</div>
+        <p><a class="btn" href="mailto:kontakt@nma.example?subject=Certyfikat%20NMA%20(120h)&body=Imi%C4%99%3A%0ARola%3A%0ALokalizacja%3A%0APytania%3A%20">Zapytaj</a></p>
+      </article>
+      <article class="card">
+        <h3>Szkolenia dla Rad/PPP</h3>
+        <p>90 min online + materiały + zaświadczenia. AI/VR jako wsparcie wdrożeń (opcjonalnie).</p>
+        <div class="price">1890–2490 zł netto</div>
+        <p><a class="btn" href="mailto:kontakt@nma.example?subject=Szkolenie%20Rady/PPP%20—%20zapytanie&body=Nazwa%20jednostki%3A%0ALiczba%20os%C3%B3b%3A%0ATermin%3A%20">Zamów wycenę</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="o-mnie" class="section" style="background:linear-gradient(180deg, rgba(255,255,255,.02), transparent)">
+  <div class="container two-col">
+    <div>
+      <h2>O mnie</h2>
+      <p><b>Dr inż. Marlena Gąsior-Głogowska</b> specjalizuje się w badaniach nad strukturą i właściwościami białek amyloidowych oraz ich samoorganizacji, a także w analizie molekularnej tkanek biologicznych.</p>
+
+      <h3>Badania amyloidów</h3>
+      <p>W 2024 roku opublikowała artykuły w renomowanych czasopismach naukowych, takich jak <i>Journal of Materials Chemistry B</i> i <i>Chemical Record</i>. Przykłady to prace dotyczące stabilności peptydów samoorganizujących się (<i>Boosting stability: a hierarchical approach for self-assembling peptide structures</i>) oraz wyzwań związanych z rozpuszczalnością amyloidów (<i>Challenges in peptide solubilization – amyloids case study</i>). Badania te przyczyniają się do zrozumienia mechanizmów agregacji białek, co ma znaczenie w kontekście chorób neurodegeneracyjnych.</p>
+
+      <h3>Biofunkcjonalizacja biomateriałów</h3>
+      <p>Współautorka badań nad powlekaniem stentów naczyniowych interleukinami w celu zmniejszenia ryzyka restenozy i zakrzepów (<i>In vitro examinations of the anti-inflammatory interleukin functionalized polydopamine based biomaterial as a potential coating for cardiovascular stents</i>). Prace te mają potencjalne zastosowanie w medycynie sercowo‑naczyniowej.</p>
+
+      <h3>Spektroskopia Ramana</h3>
+      <p>Wykorzystuje spektroskopię wibracyjną, w tym Ramana w podczerwieni (Fourier Transform Near Infrared Raman Spectroscopy), do analizy zmian molekularnych w kolagenie pod wpływem naprężeń mechanicznych. Jej badania nad strukturą kolagenu w tkankach biologicznych wspierają rozwój inżynierii tkankowej.</p>
+
+      <h3>Mechanika aorty</h3>
+      <p>Analizowała właściwości mechaniczne i strukturalne blaszek miażdżycowych w aorcie ludzkiej (<i>Contributions of collagen fibers in the mechanics of the human abdominal aorta</i>), co ma znaczenie dla oceny ryzyka pęknięcia naczyń krwionośnych.</p>
+
+      <h3>Publikacje i cytowania</h3>
+      <p>Publikacje dr Gąsior‑Głogowskiej, cytowane ponad 600 razy (wg Google Scholar), ukazują się w wysoko punktowanych czasopismach, takich jak <i>Physical Chemistry Chemical Physics</i>, co potwierdza wysoki poziom merytoryczny jej badań.</p>
+
+      <h3>Działalność dydaktyczna</h3>
+      <p>Dr inż. Gąsior‑Głogowska prowadzi zajęcia z chemii ogólnej i analitycznej na Politechnice Wrocławskiej. Jest autorką materiałów dydaktycznych, w tym zestawów zadań z chemii, które wymagają od studentów analitycznego myślenia i umiejętności rozwiązywania problemów, np. obliczania pH roztworów kwasów czy analizy równowag chemicznych. Jej podejście do nauczania charakteryzuje się precyzją i naciskiem na rozwijanie kompetencji naukowych studentów.</p>
+
+      <h3>Kompetencje i znaczenie naukowe</h3>
+      <p>Dr inż. Marlena Gąsior‑Głogowska łączy zaawansowaną wiedzę z zakresu inżynierii biomedycznej, spektroskopii i chemii z praktycznym zastosowaniem w medycynie i biotechnologii. Jej badania nad amyloidami i biomateriałami mają potencjał do tworzenia innowacyjnych rozwiązań w diagnostyce i terapii chorób. Jako dydaktyk kształtuje kolejne pokolenia inżynierów i naukowców, przekazując im solidne podstawy teoretyczne i praktyczne.</p>
+
+      <h3>Podsumowanie</h3>
+      <p>Dr inż. Marlena Gąsior‑Głogowska to ceniona badaczka i wykładowczyni, której praca naukowa i dydaktyczna wnosi istotny wkład w rozwój inżynierii biomedycznej. Jej badania nad strukturą białek, biofunkcjonalizacją biomateriałów i mechaniką tkanek biologicznych są przykładami interdyscyplinarnego podejścia do nauki, łączącego chemię, fizykę i medycynę. Jej dorobek naukowy, potwierdzony licznymi publikacjami i cytowaniami, oraz zaangażowanie w kształcenie studentów czynią ją kluczową postacią w polskiej nauce.</p>
+
+    </div>
+    <div class="card">
+      <h3>Współpraca — jak startujemy</h3>
+      <ol>
+        <li>Bezpłatna rozmowa 15 min (cele i kontekst)</li>
+        <li>Propozycja ścieżki: 1:1, grupa lub certyfikat</li>
+        <li>Wdrożenia tygodniowe + mierzenie efektów</li>
+      </ol>
+      <p><a class="btn btn-ghost" href="#kontakt">Umów rozmowę</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="container">
+    <h2>FAQ (krótko)</h2>
+    <details><summary>To jest kliniczne?</summary><p>Nie. Charakter edukacyjny/coachingowy. Nie prowadzimy diagnozy ani terapii.</p></details>
+    <details><summary>Czy pracujecie ze szkołami/PPP?</summary><p>Tak — szkolenia Rad, warsztaty, wsparcie wdrożeń.</p></details>
+    <details><summary>Czy AI/VR jest obowiązkowe?</summary><p>Nie. To dodatki. Zaczynamy od podstaw: adaptacje, 3-3-1, współpraca z rodzicem.</p></details>
+  </div>
+</section>
+
+<section id="kontakt" class="section" style="background:linear-gradient(180deg, rgba(255,255,255,.02), transparent)">
+  <div class="container two-col">
+    <div>
+      <h2>Kontakt</h2>
+      <p>Najprościej: napisz maila lub użyj przycisków w ofercie. Nie podawaj danych wrażliwych/identyfikujących.</p>
+      <p><a class="btn" href="mailto:kontakt@nma.example?subject=Zapytanie%20—%20dr%20in%C5%BC.%20Marlena">kontakt@nma.example</a></p>
+    </div>
+    <div class="card">
+      <h3>Dane do briefu (kopiuj-wklej w mailu):</h3>
+      <p>Imię i rola: __  / Jednostka: __<br/>
+      Obszar: coaching 1:1 / mentoring / certyfikat / rada<br/>
+      Cel: __  / Termin preferowany: __</p>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container footer-wrap">
+    <div class="footer-left">
+      <div class="legal-main">© 2025 NeuroMentor Academy • Charakter edukacyjny • RODO‑safe</div>
+      <div class="legal-mini">Karol Kiszło&trade; • Projekt i design autorski — wszelkie prawa zastrzeżone • Zakaz kopiowania i dystrybucji bez pisemnej zgody właściciela.</div>
+    </div>
+    <div class="footer-nav"><a href="#oferta">Oferta</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></div>
+  </div>
+</footer>
+
+
+<a class="floating" href="#kontakt">Umów rozmowę</a>
+</body>
+</html>
