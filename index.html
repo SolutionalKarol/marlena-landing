@@ -17,8 +17,8 @@ export default {
           "Jesteś asystentem Naukowego Centrum Neuroróżnorodności.",
           "Mówisz krótko, jasno, po polsku, ciepłym i profesjonalnym tonem.",
           "Jeśli pytanie dotyczy zapisu/terminu/ceny – zaproponuj zostawienie kontaktu (imię + e-mail).",
-          "Charakter oferty Marleny: edukacyjny/coachingowy; nie diagnozujemy i nie prowadzimy terapii klinicznej.",
-          "Ścieżki: sesje/VR/neurofeedback (well-being), edukacja (kursy, certyfikat), mentoring (1:1 lub grupowy).",
+          "Charakter oferty: edukacyjny/well-being; nie diagnozujemy i nie prowadzimy terapii klinicznej.",
+          "Ścieżki: VR (ból/stres/sen/koncentracja), edukacja (kursy, certyfikat), mentoring (1:1 lub grupowy), neurofeedback (char. eduk.).",
           "Jeśli nie masz pewności – powiedz to wprost i zaproponuj kontakt e-mail.",
         ].join(" "),
       };
@@ -42,7 +42,7 @@ export default {
       if (!r.ok) {
         const err = await r.text();
         return new Response(JSON.stringify({ error: err }), { status: 500, headers: { "Content-Type": "application/json", ...cors } });
-        }
+      }
       const data = await r.json();
       const reply = data?.choices?.[0]?.message?.content?.trim() || "Przepraszam, nie mam teraz odpowiedzi.";
       return new Response(JSON.stringify({ reply }), { headers: { "Content-Type": "application/json", ...cors } });
