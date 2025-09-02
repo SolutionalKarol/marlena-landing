@@ -1,53 +1,225 @@
-export default {
-  async fetch(request, env) {
-    const ALLOW_ORIGIN = "https://solutionalkarol.github.io"; // <- Twoja domena Pages
-    const cors = {
-      "Access-Control-Allow-Origin": ALLOW_ORIGIN,
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    };
-    if (request.method === "OPTIONS") return new Response(null, { headers: cors });
-    if (request.method !== "POST") return new Response("Method Not Allowed", { status: 405, headers: cors });
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dr inż. Marlena Gąsior-Głogowska — NeuroMentor Academy</title>
+  <meta name="description" content="Coaching 1:1, mentoring, Certyfikat NMA (120h) + sesje VR: ból, stres, sen. Zadaj pytanie asystentowi na stronie.">
 
-    try {
-      const { messages = [], max_output_tokens = 600 } = await request.json();
-      const system = {
-        role: "system",
-        content: [
-          "Jesteś asystentem Naukowego Centrum Neuroróżnorodności.",
-          "Mówisz krótko, jasno, po polsku, ciepłym i profesjonalnym tonem.",
-          "Jeśli pytanie dotyczy zapisu/terminu/ceny – zaproponuj zostawienie kontaktu (imię + e-mail).",
-          "Charakter oferty: edukacyjny/well-being; nie diagnozujemy i nie prowadzimy terapii klinicznej.",
-          "Ścieżki: VR (ból/stres/sen/koncentracja), edukacja (kursy, certyfikat), mentoring (1:1 lub grupowy), neurofeedback (char. eduk.).",
-          "Jeśli nie masz pewności – powiedz to wprost i zaproponuj kontakt e-mail.",
-        ].join(" "),
-      };
+  <!-- Open Graph dla WhatsApp/FB/Twitter -->
+  <meta property="og:title" content="dr inż. Marlena Gąsior-Głogowska — NeuroMentor Academy">
+  <meta property="og:description" content="Coaching 1:1, mentoring, Certyfikat NMA (120h) + sesje VR: ból, stres, sen. Zadaj pytanie asystentowi na stronie.">
+  <meta property="og:image" content="https://solutionalkarol.github.io/marlena-landing/assets/marlena.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solutionalkarol.github.io/marlena-landing/">
+  <meta name="twitter:card" content="summary_large_image">
 
-      const payload = {
-        model: "gpt-4o-mini",
-        messages: [system, ...messages],
-        max_output_tokens,
-        temperature: 0.4,
-      };
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-      const r = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify(payload),
-      });
+  <style>
+    :root{ --bg:#0b0f14; --bg2:#0a0e13; --ink:#e6edf3; --muted:#8aa0b2; --brand:#0ea5e9; --card:#0f1721; }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--ink); scroll-behavior:smooth;}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    a{color:var(--ink);text-decoration:none}
+    .btn{display:inline-block;background:var(--brand);color:#001018;padding:12px 18px;border-radius:12px;font-weight:800;box-shadow:0 8px 24px rgba(14,165,233,.25);transition:.2s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.18)}
+    header{position:sticky;top:0;z-index:10;background:rgba(11,15,20,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+    nav{display:flex;gap:16px;align-items:center}
+    .nav-wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+    .logo{font-weight:800;letter-spacing:.3px}
 
-      if (!r.ok) {
-        const err = await r.text();
-        return new Response(JSON.stringify({ error: err }), { status: 500, headers: { "Content-Type": "application/json", ...cors } });
-      }
-      const data = await r.json();
-      const reply = data?.choices?.[0]?.message?.content?.trim() || "Przepraszam, nie mam teraz odpowiedzi.";
-      return new Response(JSON.stringify({ reply }), { headers: { "Content-Type": "application/json", ...cors } });
-    } catch (e) {
-      return new Response(JSON.stringify({ error: e.message || "Proxy error" }), { status: 500, headers: { "Content-Type": "application/json", ...cors } });
+    .hero{padding:72px 0;background:radial-gradient(800px 400px at 20% -10%, rgba(14,165,233,.2), transparent)}
+    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+    .hero-left{display:grid;grid-template-columns:420px 1fr;gap:24px;align-items:center}
+    .hero-photo{display:flex;justify-content:center;align-items:center}
+    .hero-photo img{width:100%;max-width:420px;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 30px rgba(0,0,0,.35);object-fit:cover;aspect-ratio:4/5;object-position:center top;display:block}
+    h1{font-size:56px;line-height:1.05;margin:.2em 0;word-break:keep-all;hyphens:manual}
+    .nowrap{white-space:nowrap}.desktop-break{display:inline}
+    .lead{color:var(--muted);max-width:60ch}
+    .cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+    .badges{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    .badges span{background:rgba(255,255,255,.06);padding:6px 10px;border-radius:999px;color:#cbe2f3;font-size:12px;border:1px solid rgba(255,255,255,.08)}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);padding:18px;border-radius:16px}
+    .section{padding:72px 0}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .price{font-weight:800;margin-top:8px;color:var(--brand)}
+    .two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+    details{background:var(--card);border:1px solid rgba(255,255,255,.08);padding:12px 14px;border-radius:12px;margin:10px 0}
+    details summary{cursor:pointer;font-weight:600}
+    section[id]{scroll-margin-top:80px}
+
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns:1fr}
+      .hero-left{grid-template-columns:1fr}
+      .hero-photo img{max-width:320px}
+      .desktop-break{display:none}
+      .grid{grid-template-columns:1fr 1fr}
+      .two-col{grid-template-columns:1fr}
     }
-  },
-};
+    @media (max-width: 600px){ .grid{grid-template-columns:1fr} }
+
+    footer{padding:28px 0;border-top:1px solid rgba(255,255,255,.08);color:#c9d6e2}
+    .footer-wrap{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+    .legal-main{color:#c9d6e2}
+    .legal-mini{font-size:12px;opacity:.8;color:#9fb0bf;margin-top:6px}
+    .footer-nav{opacity:.8;display:flex;gap:12px;white-space:nowrap}
+    @media (max-width: 700px){ .footer-wrap{flex-direction:column;align-items:flex-start} .footer-nav{margin-top:8px} }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-wrap">
+    <div class="logo">NeuroMentor Academy</div>
+    <nav>
+      <a href="#oferta">Oferta</a>
+      <a href="#o-mnie">O mnie</a>
+      <a href="#vr">VR</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-ghost" href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-left">
+      <figure class="hero-photo">
+        <img src="assets/marlena.jpg" alt="dr inż. Marlena Gąsior-Głogowska" decoding="sync" fetchpriority="high">
+      </figure>
+      <div class="hero-copy">
+        <h1><span class="nowrap">dr inż. Marlena</span><br class="desktop-break"><span class="nowrap">Gąsior-Głogowska</span></h1>
+        <p class="lead">Coaching i mentoring dla adeptów oraz psychologów wchodzących w neuroróżnorodność (ADHD/ASD). Proste adaptacje, mierzalne efekty, etyka pracy edukacyjnej.</p>
+        <div class="cta">
+          <a class="btn" href="#kontakt">Umów rozmowę</a>
+          <a class="btn btn-ghost" href="#oferta">Zobacz ofertę</a>
+        </div>
+        <div class="badges">
+          <span>edukacja ≠ terapia</span><span>arkusz 3-3-1</span><span>AI & VR (opcjonalnie)</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Co zyskasz w 30 dni</h3>
+      <ul>
+        <li>5–7 adaptacji wdrożonych w klasie/gabinecie</li>
+        <li>gotowe skrypty dla rodzica/nauczyciela</li>
+        <li>plan obserwacji 3-3-1 (10 min/tydz.)</li>
+      </ul>
+      <p style="color:#8aa0b2;font-size:12px">Materiał ma charakter edukacyjny. Nie prowadzimy diagnozy ani terapii.</p>
+    </div>
+  </div>
+</section>
+
+<section id="oferta" class="section">
+  <div class="container">
+    <h2>Oferta</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Sesje VR (ból/stres/sen/koncentracja)</h3>
+        <p>Guided mindfulness-VR, relaksacja kierowana, oddech z biofeedbackiem, bezpieczna ekspozycja. 15–25 min + mini-plan.</p>
+        <div class="price">pilotaż: 150–250 zł</div>
+        <p><a class="btn" href="#vr">Zobacz moduły VR</a></p>
+      </article>
+      <article class="card">
+        <h3>Coaching 1:1</h3>
+        <p>Pakiet 5×50 min. Kontrakt celów, notatka superwizyjna, wdrożenia tydzień-po-tygodniu.</p>
+        <div class="price">od 1450 zł</div>
+        <p><a class="btn" href="mailto:kontakt@neuromentor.academy">Zapytaj o termin</a></p>
+      </article>
+      <article class="card">
+        <h3>Mentoring grupowy</h3>
+        <p>8 tygodni, 6 spotkań (8–12 osób). Case’y i praktyczne adaptacje. Dostęp do materiałów.</p>
+        <div class="price">1190–1490 zł</div>
+        <p><a class="btn" href="mailto:kontakt@neuromentor.academy">Zapisz się</a></p>
+      </article>
+      <article class="card">
+        <h3>Certyfikat NMA (120h)</h3>
+        <p>12 tygodni: 8 modułów + 6 superwizji + 2 case’y. Charakter edukacyjny, certyfikat ukończenia NMA.</p>
+        <div class="price">3490 zł</div>
+        <p><a class="btn" href="mailto:kontakt@neuromentor.academy">Zapytaj</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="vr" class="section">
+  <div class="container two-col">
+    <div>
+      <h2>VR — sesje: ból, stres, sen</h2>
+      <p>Programy VR inspirowane protokołami stosowanymi w USA: mindfulness-based VR, relaksacja, trening oddechowy, ekspozycja w bezpiecznym środowisku.</p>
+      <ul>
+        <li><b>Ból przewlekły</b> — trening uważności, edukacja neurobiologiczna bólu, modulacja napięcia.</li>
+        <li><b>Stres i lęk</b> — prowadzone sesje oddechowe, regulacja układu autonomicznego, wizualizacje.</li>
+        <li><b>Sen</b> — protokoły wyciszające (15–20 min).</li>
+        <li><b>Koncentracja</b> — krótkie „reset focus” do pracy/nauki.</li>
+      </ul>
+      <p class="lead" style="margin-top:8px;color:#8aa0b2">Charakter edukacyjny/well-being. Nie zastępuje porady lekarskiej i leczenia klinicznego.</p>
+    </div>
+    <div class="card">
+      <h3>Jak to działa</h3>
+      <ol>
+        <li>Rozmowa wstępna (15 min).</li>
+        <li>Dobór modułu VR (15–25 min) + instrukcja.</li>
+        <li>Follow-up: mini-plan (oddech, higiena snu, 3-3-1).</li>
+      </ol>
+      <div class="price">sesja pilotażowa: 150–250 zł</div>
+      <p><a class="btn" href="#kontakt">Umów sesję VR</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="container">
+    <h2>FAQ (krótko)</h2>
+    <details><summary>To jest kliniczne?</summary><p>Nie. Charakter edukacyjny/coachingowy. Nie prowadzimy diagnozy ani terapii.</p></details>
+    <details><summary>Czy pracujecie ze szkołami/PPP?</summary><p>Tak — szkolenia Rad, warsztaty, wsparcie wdrożeń.</p></details>
+    <details><summary>Czy AI/VR jest obowiązkowe?</summary><p>Nie. To dodatki. Zaczynamy od podstaw: adaptacje, 3-3-1, współpraca z rodzicem.</p></details>
+  </div>
+</section>
+
+<section id="kontakt" class="section">
+  <div class="container two-col">
+    <div>
+      <h2>Kontakt</h2>
+      <p>Napisz na mail: <a href="mailto:kontakt@neuromentor.academy">kontakt@neuromentor.academy</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-wrap">
+    <div class="legal-main">© 2025 NeuroMentor Academy • Charakter edukacyjny • RODO-safe</div>
+    <div class="legal-mini">Karol Kiszło™ • Projekt autorski</div>
+  </div>
+</footer>
+
+<!-- Agent FAQ offline -->
+<script>
+(function(){
+  const CONFIG = {brand:{name:"Centrum Neuroróżnorodności",primary:"#0ea5e9"},lead:{mailto:"kontakt@neuromentor.academy"}};
+
+  const FAQ = [
+    {q:/zapisa|umówi|termin/,a:"Najprościej: podaj imię i e-mail — wrócimy z propozycją terminu.",cta:[{t:"Napisz maila",h:"mailto:"+CONFIG.lead.mailto}]},
+    {q:/koszt|cena/,a:"Mentoring 1:1: 400–700 zł/h. Coaching (pakiet 5×50 min) od 1450 zł. Grupa: 1190–1490 zł. Certyfikat NMA: 3490 zł. Sesja VR: 150–250 zł."},
+    {q:/VR|ból|stres|sen/,a:"Sesje VR 15–25 min: mindfulness-VR, relaksacja, oddech, ekspozycja. Well-being, nie kliniczne.",cta:[{t:"Zobacz VR",h:"#vr"}]},
+    {q:/ADHD|ASD/,a:"Działamy edukacyjnie: adaptacje, strategie uwagi, 3-3-1, współpraca z rodzicem. Bez diagnozy klinicznej."},
+  ];
+
+  const btn=document.createElement("button");btn.innerText="💬 Zapytaj nas";btn.style.cssText="position:fixed;right:20px;bottom:20px;padding:12px 18px;border-radius:999px;background:"+CONFIG.brand.primary+";color:#fff;font-weight:800;z-index:9999;";document.body.appendChild(btn);
+
+  const panel=document.createElement("div");panel.style.cssText="position:fixed;right:20px;bottom:70px;width:300px;height:400px;background:#fff;color:#000;border-radius:12px;display:none;flex-direction:column;z-index:9999;box-shadow:0 10px 25px rgba(0,0,0,.3);";
+  const msgs=document.createElement("div");msgs.style.cssText="flex:1;overflow:auto;padding:10px;font-size:14px;";panel.appendChild(msgs);
+  const input=document.createElement("input");input.placeholder="Napisz pytanie…";input.style.cssText="border:none;padding:8px;width:100%;";panel.appendChild(input);
+  document.body.appendChild(panel);
+
+  btn.onclick=()=>panel.style.display=panel.style.display==="flex"?"none":"flex";
+  input.onkeydown=e=>{if(e.key==="Enter"){let q=input.value.trim();if(!q)return;msgs.innerHTML+="<div><b>Ty:</b> "+q+"</div>";input.value="";let f=FAQ.find(x=>x.q.test(q));if(f){msgs.innerHTML+="<div><b>Agent:</b> "+f.a+"</div>";if(f.cta)f.cta.forEach(c=>msgs.innerHTML+=`<div><a href=\"${c.h}\">${c.t}</a></div>`);}else{msgs.innerHTML+="<div><b>Agent:</b> Dobre pytanie! Skontaktuj się z nami przez mail.</div>";}}};
+})();
+</script>
+</body>
+</html>
