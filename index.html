@@ -68,6 +68,7 @@
     <nav>
       <a href="#oferta">Oferta</a>
       <a href="#o-mnie">O mnie</a>
+      <a href="#vr">VR</a>
       <a href="#faq">FAQ</a>
       <a class="btn btn-ghost" href="#kontakt">Kontakt</a>
     </nav>
@@ -165,6 +166,32 @@
   </div>
 </section>
 
+<section id="vr" class="section">
+  <div class="container two-col">
+    <div>
+      <h2>VR — sesje: ból, stres, sen</h2>
+      <p>Programy VR inspirowane protokołami stosowanymi w USA: mindfulness‑based VR, kierowana relaksacja, trening oddechowy z biofeedbackiem oraz stopniowana ekspozycja w bezpiecznym środowisku.</p>
+      <ul>
+        <li><b>Ból przewlekły</b> — trening uważności i przenoszenia uwagi, edukacja neurobiologiczna bólu, modulacja napięcia.</li>
+        <li><b>Stres i lęk</b> — prowadzone sesje oddechowe, regulacja układu autonomicznego, wizualizacje.</li>
+        <li><b>Sen</b> — protokoły wyciszające wieczorne (15–20 min).</li>
+        <li><b>Koncentracja</b> — krótkie „reset focus” do pracy/nauki.</li>
+      </ul>
+      <p class="lead" style="margin-top:8px;color:#8aa0b2">Charakter edukacyjny/well‑being. Nie zastępuje porady lekarskiej i leczenia klinicznego.</p>
+    </div>
+    <div class="card">
+      <h3>Jak to działa</h3>
+      <ol>
+        <li>Rozmowa wstępna (15 min) — cele i przeciwwskazania.</li>
+        <li>Dobór modułu VR (15–25 min) + instrukcja.</li>
+        <li>Follow‑up: mini‑plan (oddech, higiena snu, 3‑3‑1).</li>
+      </ol>
+      <div class="price">sesja pilotażowa: 150–250 zł</div>
+      <p><a class="btn" href="#kontakt">Umów sesję VR</a></p>
+    </div>
+  </div>
+</section>
+
 <section id="faq" class="section">
   <div class="container">
     <h2>FAQ (krótko)</h2>
@@ -209,17 +236,21 @@
 (function () {
   const CONFIG = {
     brand: { name: "Naukowe Centrum Neuroróżnorodności", primary: "#0ea5e9", dark: "#0b1726", light: "#f8fafc" },
-    links: { oferta: "#oferta", kontakt: "#kontakt", rezerwacja: "#kontakt", kursy: "#oferta", polityka: "#kontakt" },
+    links: { oferta: "#oferta", kontakt: "#kontakt", rezerwacja: "#kontakt", kursy: "#oferta", polityka: "#kontakt", vr: "#vr" },
     lead: { mailto: "kontakt@nma.example", subject: "Nowe zgłoszenie — Centrum Neuroróżnorodności" },
     ai:   { PROXY_URL: "", modelLabel: "AI (knowledge + FAQ)", maxOutputTokens: 600 }
   };
   const FAQ = [
     { intent: /neurofeedback|biofeedback|EEG/i, answer: "Neurofeedback (EEG‑biofeedback) to trening mózgu uczący samoregulacji. Sesje 20–40 min, wzmacnianie pożądanych wzorców EEG. Efekty: koncentracja, sen, mniejsze napięcie. Prowadzi zespół dr Marleny.", cta: [{ text: "Zobacz ofertę", href: CONFIG.links.oferta }] },
     { intent: /zapisa|umówi|rezerwacj|termin|sesj/i, answer: "Aby umówić sesję, zostaw imię i e‑mail — oddzwonimy. Możesz też kliknąć przycisk rezerwacji.", cta: [{ text: "Zostaw kontakt", action: "lead" }, { text: "Przejdź do rezerwacji", href: CONFIG.links.rezerwacja }] },
-    { intent: /(cena|koszt|ile koszt)/i, answer: "Ceny zależą od usługi (sesje, konsultacje, program, mentoring). Podamy wycenę po krótkim formularzu potrzeb.", cta: [{ text: "Wycena — zostaw kontakt", action: "lead" }] },
-    { intent: /kurs|szkoleni|certyfik|terapeuci|zosta/i, answer: "Prowadzimy ścieżkę dla przyszłych terapeutów: moduły, warsztaty, mentoring u dr inż. Sebastiana Kraszewskiego i dr Marleny.", cta: [{ text: "Program kursów", href: CONFIG.links.kursy }, { text: "Zainteresuj mnie", action: "lead" }] },
+    { intent: /(cena|koszt|ile koszt)/i, answer: "Mentoring 1:1: 400–700 zł/h. Coaching 1:1 (pakiet 5×50 min) od 1450 zł. Mentoring grupowy 1190–1490 zł. Certyfikat NMA (120h) 3490 zł. Dokładną wycenę podamy po krótkim formularzu potrzeb.", cta: [{ text: "Wycena — zostaw kontakt", action: "lead" }] },
+    { intent: /kurs|szkoleni|certyfik|terapeuci|zosta/i, answer: "Prowadzimy ścieżkę dla przyszłych terapeutów: 8 modułów + 6 superwizji + 2 case’y; charakter edukacyjny. Mentoring: dr inż. Sebastian Kraszewski i dr inż. Marlena Gąsior‑Głogowska.", cta: [{ text: "Program kursów", href: CONFIG.links.kursy }, { text: "Zainteresuj mnie", action: "lead" }] },
+    { intent: /VR|wirtualn|ból|stres|lęk|sen/i, answer: "Mamy sesje VR (15–25 min) inspirowane protokołami stosowanymi w USA: mindfulness‑VR, kierowana relaksacja, trening oddechowy oraz ekspozycja w bezpiecznym środowisku. Cel: regulacja stresu, modulacja bólu, poprawa snu i koncentracji. Charakter well‑being/edukacyjny, nie zastępuje leczenia klinicznego.", cta: [{ text: "Zobacz sesje VR", href: CONFIG.links.vr }, { text: "Umów sesję", href: CONFIG.links.kontakt }] },
+    { intent: /zdaln|online|remote/i, answer: "Konsultacje i mentoring — online. Sesje VR: stacjonarnie lub hybrydowo (wprowadzenie + domowe protokoły).", cta: [{ text: "Umów rozmowę", href: CONFIG.links.kontakt }] },
+    { intent: /ADHD|ASD|neuro(?:różnorodność|roznorodn)/i, answer: "Pracujemy edukacyjnie: adaptacje środowiska, strategie 3‑3‑1, trening uwagi/oddechu, wsparcie rodzica/nauczyciela. Bez diagnozy klinicznej.", cta: [{ text: "Zobacz ofertę", href: CONFIG.links.oferta }] },
+    { intent: /kim|kto prowadzi|zesp[oó]ł|prowadzą|prowadzi/i, answer: "Zespół: dr inż. Marlena Gąsior‑Głogowska (edukacja/mentoring) i dr inż. Sebastian Kraszewski (badania/mentoring).", cta: [{ text: "Kontakt", href: CONFIG.links.kontakt }] },
     { intent: /kontakt|email|telefon/i, answer: "Najprościej: zostaw kontakt — odezwiemy się tego samego dnia roboczego. Dane są też w stopce.", cta: [{ text: "Zostaw kontakt", action: "lead" }, { text: "Przejdź do kontaktu", href: CONFIG.links.kontakt }] },
-    { intent: /RODO|polityk|prywatn/i, answer: "Dbamy o prywatność. Dane z formularza wykorzystujemy wyłącznie do kontaktu i przygotowania oferty.", cta: [{ text: "Polityka prywatności", href: CONFIG.links.polityka }] },
+    { intent: /RODO|polityk|prywatn/i, answer: "Dbamy o prywatność. Dane z formularza służą wyłącznie do kontaktu i przygotowania oferty.", cta: [{ text: "Polityka prywatności", href: CONFIG.links.polityka }] }
   ];
   const $ = (s,r=document)=>r.querySelector(s);
   const el=(t,a={},c=[])=>{const n=document.createElement(t);Object.entries(a).forEach(([k,v])=>{if(k==="style")Object.assign(n.style,v);else if(k.startsWith("on"))n.addEventListener(k.slice(2),v);else if(k==="class")n.className=v;else n.setAttribute(k,v)});c.forEach(x=>n.appendChild(typeof x==="string"?document.createTextNode(x):x));return n};
@@ -235,7 +266,7 @@
   footer.append(input,send); panel.append(header,body,footer); document.body.append(btn,panel);
   btn.addEventListener("click",()=>{panel.style.display=panel.style.display==="flex"?"none":"flex"; panel.style.display==="flex"&&input.focus()});
   const push=(role,text,opts={})=>{const row=el("div",{class:`nm-msg nm-msg--${role}`}); if(role==="bot") row.append(el("div",{class:"nm-ava"},["N"])); const bub=el("div",{class:"nm-bub"},[text]); row.append(bub); if(opts.cta&&opts.cta.length){const wrap=el("div",{class:"nm-cta"}); opts.cta.forEach(c=>{if(c.href){wrap.append(el("a",{href:c.href},[c.text]))} else if(c.action==="lead"){wrap.append(el("button",{onclick:()=>lead()},[c.text]))}}); bub.append(el("div",{},[wrap])); } body.append(row); body.scrollTop=body.scrollHeight; };
-  const hello=()=>push("bot","Cześć! Tu asystent Centrum Neuroróżnorodności. Pomogę Ci: terapia (neurofeedback, konsultacje) albo edukacja (kursy, certyfikacja). Zadaj pytanie lub wybierz:",{cta:[{text:"Chcę terapię / sesję",action:"lead"},{text:"Chcę zostać terapeutą",href:CONFIG.links.kursy},{text:"Zobacz ofertę",href:CONFIG.links.oferta}]});
+  const hello=()=>push("bot","Cześć! Tu asystent Centrum Neuroróżnorodności. Pomogę Ci: terapia (neurofeedback, konsultacje) albo edukacja (kursy, certyfikacja). Zadaj pytanie lub wybierz:",{cta:[{text:"Chcę terapię / sesję",action:"lead"},{text:"Chcę zostać terapeutą",href:CONFIG.links.kursy},{text:"VR: stres / ból",href:CONFIG.links.vr},{text:"Zobacz ofertę",href:CONFIG.links.oferta}]});
   const lead=()=>{const box=el("div",{class:"nm-lead"}); const name=el("input",{placeholder:"Imię i nazwisko"}); const email=el("input",{placeholder:"Email"}); const needs=el("textarea",{rows:"3",placeholder:"Krótko opisz potrzeby (np. koncentracja, sen, ADHD, kurs terapeuty)"}); const go=el("button",{class:"nm-send"},["Wyślij zgłoszenie"]); go.addEventListener("click",()=>{const payload={name:name.value.trim(),email:email.value.trim(),needs:needs.value.trim(),ts:new Date().toISOString()}; if(!payload.email||!payload.name){alert("Podaj imię i email ✉️");return;} const bodyTxt=encodeURIComponent(`Imię i nazwisko: ${payload.name}\nEmail: ${payload.email}\nPotrzeby: ${payload.needs}\nCzas: ${payload.ts}`); window.location.href=`mailto:${CONFIG.lead.mailto}?subject=${encodeURIComponent(CONFIG.lead.subject)}&body=${bodyTxt}`; push("bot","Dziękujemy! Odezwiemy się na podany email możliwie szybko.");}); box.append(name,email,needs,go); push("bot","Zostaw kontakt — wrócimy z propozycją terminu i planem."); body.append(box); body.scrollTop=body.scrollHeight; };
   const route=q=>{const it=FAQ.find(f=>f.intent.test(q)); return it?{text:it.answer,cta:it.cta}:null};
   const askAI=async(q)=>{if(!CONFIG.ai.PROXY_URL) return null; try{const r=await fetch(CONFIG.ai.PROXY_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:[{role:"system",content:"Jesteś asystentem Naukowego Centrum Neuroróżnorodności. Odpowiadasz krótko, konkretnie, po polsku, z ciepłym tonem. Jeśli pada pytanie o zapis/wycenę – zaproponuj pozostawienie kontaktu."},{role:"user",content:q}],max_output_tokens:CONFIG.ai.maxOutputTokens})}); if(!r.ok) throw new Error("Bad response"); const data=await r.json(); if(data&&data.reply) return {text:data.reply}; return null;}catch(e){console.warn("AI proxy error",e); return null;}};
